@@ -3,24 +3,24 @@ import yt_dlp
 
 # Primer YouTube linkova za svaki žanr (dodajte svoje linkove!)
 genre_links = {
-    # "blues": [
-    #     "https://youtu.be/ioOzsi9aHQQ?list=PLFjmckBbDlzSE47xD0FivigDOARiLJl61",
-    # ],
-    # "classical": [
-    #     "https://youtu.be/9E6b3swbnWg?list=PLO_1AmtK1TMRi01-V_tdHKDLBu7cNWIgf"
-    # ],
-    # "electronic": [
-    #     "https://youtu.be/foE1mO2yM04?list=PL7wr9BYcCCyNb0IhqqebdLEMkklMSOttA"
-    # ],
-    # "folk": [
-    #     "https://youtu.be/5NnINMjbJCU?list=PL3QM09EUkf8Rht2yMxILxj53iJS2gwrEX"
-    # ],
-    # "metal": [
-    #     "https://youtu.be/CD-E-LDc384?list=PLGBuKfnErZlBQRS7AqbpA8N-_qO50ReTr"
-    # ],
-    # "pop": [
-    #     "https://youtu.be/WcIcVapfqXw?list=PLeME5BS6gE76Vmr1PubWrLa1cbCr7uOle"
-    # ],
+    "blues": [
+        "https://youtu.be/ioOzsi9aHQQ?list=PLFjmckBbDlzSE47xD0FivigDOARiLJl61",
+    ],
+    "classical": [
+        "https://youtu.be/9E6b3swbnWg?list=PLO_1AmtK1TMRi01-V_tdHKDLBu7cNWIgf"
+    ],
+    "electronic": [
+        "https://youtu.be/foE1mO2yM04?list=PL7wr9BYcCCyNb0IhqqebdLEMkklMSOttA"
+    ],
+    "folk": [
+        "https://youtu.be/5NnINMjbJCU?list=PL3QM09EUkf8Rht2yMxILxj53iJS2gwrEX"
+    ],
+    "metal": [
+        "https://youtu.be/CD-E-LDc384?list=PLGBuKfnErZlBQRS7AqbpA8N-_qO50ReTr"
+    ],
+    "pop": [
+        "https://youtu.be/WcIcVapfqXw?list=PLeME5BS6gE76Vmr1PubWrLa1cbCr7uOle"
+    ],
     "rock": [
         "https://youtu.be/kXYiU_JCYtU?list=PLnAYe9y3M4Cbf-PZCjEs9vJU-OAMqk4o6"
     ],
