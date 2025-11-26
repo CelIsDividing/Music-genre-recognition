@@ -25,6 +25,8 @@ pip install -r requirements.txt
 1. Postavite audio fajlove (.wav ili .mp3) u odgovarajuće foldere u `data/raw/` po žanrovima
 2. Svaki žanr treba da ima bar 100 audio uzoraka za dobar trening
 
+**Napomena:** Za automatsko preuzimanje i organizovanje audio uzoraka možete koristiti `download_data` klasu iz `scripts/download_data.py`. Ova klasa vam pomaže da importujete svoje audio uzorke i organizujete ih u odgovarajuću strukturu foldera.
+
 ## Pokretanje
 
 ### Trening pojedinačnog modela
