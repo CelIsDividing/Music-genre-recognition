@@ -1,10 +1,10 @@
-# Klasifikacija Muzičkih Žanrova pomoću Deep Learning-a
+# Music Genre Classification using Deep Learning
 
-## Opis projekta
-Projektat koristi različite neuronske mreže za klasifikaciju muzičkih žanrova na osnovu audio spektrograma. Uključuje poređenje više modela: MLP, jednostavne CNN, napredne CNN i ResNet arhitekture.
+## Project description
+This project uses various neural networks to classify music genres based on audio spectrograms. It includes a comparison of multiple models: MLP, simple CNNs, advanced CNNs and ResNet architectures.
 
-## Podržani žanrovi
-Projekt podržava 10 muzičkih žanrova:
+## Supported genres
+The project supports 10 music genres:
 - Country
 - Jazz
 - Pop
@@ -16,55 +16,55 @@ Projekt podržava 10 muzičkih žanrova:
 - Metal
 - Folk
 
-## Instalacija
+## Installation
 ```bash
 pip install -r requirements.txt
 ```
 
-## Priprema podataka
-1. Postavite audio fajlove (.wav ili .mp3) u odgovarajuće foldere u `data/raw/` po žanrovima
-2. Svaki žanr treba da ima bar 100 audio uzoraka za dobar trening
+## Data preparation
+1. Place audio files (.wav or .mp3) into the appropriate folders under `data/raw/`, organized by genre.
+2. Each genre should have at least 100 audio samples for good training.
 
-**Napomena:** Za automatsko preuzimanje i organizovanje audio uzoraka možete koristiti `download_data` klasu iz `scripts/download_data.py`. Ova klasa vam pomaže da importujete svoje audio uzorke i organizujete ih u odgovarajuću strukturu foldera.
+**Note:** For automatic downloading and organizing of audio samples you can use the `download_data` class from `scripts/download_data.py`. This class helps you import and organize your audio samples automatically.
 
-## Pokretanje
+## Running
 
-### Trening pojedinačnog modela
+### Training a single model
 ```bash
 python scripts/train_model.py
 ```
 
-### Poređenje više modela
+### Comparing multiple models
 ```bash
 python scripts/compare_models.py
 ```
-Ovaj skript poredi 4 različita modela i generiše tabelu sa rezultatima u `results/model_comparison.csv`
+This script compares 4 different models and generates a results table at `results/model_comparison.csv`.
 
-### Predikcija žanra za novi audio
+### Predicting the genre of a new audio file
 ```bash
 python scripts/predict.py path/to/audio_file.wav
 ```
 
-### Evaluacija modela
+### Evaluating a model
 ```bash
 python scripts/evaluate.py
 ```
 
-## Struktura projekta
-- `data/raw/` - Neobrađeni audio fajlovi po žanrovima
-- `data/processed/` - Obradjeni spektrogrami i karakteristike
-- `models/` - Sačuvani modeli i encoderi
-- `src/` - Izvorni kod (feature extraction, model, trening, predikcija)
-- `scripts/` - Skripte za pokretanje
-- `results/` - Rezultati i grafikoni
+## Project structure
+- `data/raw/` - Raw audio files organized by genre
+- `data/processed/` - Processed spectrograms and features
+- `models/` - Saved models and encoders
+- `src/` - Source code (feature extraction, models, training, prediction)
+- `scripts/` - Scripts for running tasks
+- `results/` - Results and plots
 
-## Ključne komponente
-- **Ekstrakcija karakteristika:** Mel-spektrogrami iz audio fajlova
-- **Modeli:** MLP, jednostavna CNN, napredna CNN, ResNet
-- **Preprocesiranje:** Normalizacija i reshaping podataka
-- **Obučavanje:** Early Stopping i Learning Rate Scheduling
-- **Evaluacija:** Confusion matrix, classification report i poređenje modela
+## Key components
+- **Feature extraction:** Mel-spectrograms from audio files
+- **Models:** MLP, simple CNN, advanced CNN, ResNet
+- **Preprocessing:** Normalization and reshaping of data
+- **Training:** Early stopping and learning rate scheduling
+- **Evaluation:** Confusion matrix, classification report and model comparisons
 
-## Zahtevi
+## Requirements
 - Python 3.8+
 - TensorFlow, librosa, scikit-learn, matplotlib, seaborn, pandas
