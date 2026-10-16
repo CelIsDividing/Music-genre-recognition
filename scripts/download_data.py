@@ -1,7 +1,7 @@
 import os
 import yt_dlp
 
-# Primer YouTube linkova za svaki žanr (dodajte svoje linkove!)
+# Example YouTube links for each genre (add your own links!)
 genre_links = {
     "blues": [
         "https://youtu.be/ioOzsi9aHQQ?list=PLFjmckBbDlzSE47xD0FivigDOARiLJl61",
@@ -47,8 +47,8 @@ for genre, links in genre_links.items():
                 'preferredcodec': 'wav',
                 'preferredquality': '192',
             }],
-            'playlist_items': '1-40',  # Preuzmi samo prvih 40 pesama iz plejliste
-            'ignoreerrors': True,  # Ignoriši greške i nastavi sa sledećim videoima
+            'playlist_items': '1-40',  # Download only the first 40 songs from the playlist
+            'ignoreerrors': True,  # Ignore errors and continue with the next videos
             'quiet': False
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:

@@ -5,28 +5,28 @@ from src.trainer import ModelTrainer
 from src.config import CONFIG
 
 def main():
-    # Inicijalizacija komponenti
+    # Initialize components
     data_loader = DataLoader(CONFIG)
     feature_extractor = FeatureExtractor(CONFIG['audio'])
     model = GenreClassifier()
     trainer = ModelTrainer(CONFIG['model'])
     
-    # Učitavanje podataka
-    print("Učitavanje podataka...")
+    # Load data
+    print("Loading data...")
     audio_data, labels = data_loader.load_audio_files(CONFIG['paths']['data_dir'])
     
-    # Ekstrakcija karakteristika
-    print("Ekstrakcija karakteristika...")
+    # Extract features
+    print("Extracting features...")
     features = feature_extractor.extract_features(audio_data)
     
-    # Obučavanje modela
-    print("Obučavanje modela...")
+    # Train the model
+    print("Training the model...")
     trained_model, history = trainer.train_model(features, labels, model)
     
-    # Čuvanje modela
+    # Save the model
     trainer.save_model(trained_model, CONFIG['paths']['model_dir'])
     
-    print("Projekat uspešno završen!")
+    print("Project completed successfully!")
 
 if __name__ == "__main__":
     main()

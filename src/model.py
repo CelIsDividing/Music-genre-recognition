@@ -3,7 +3,7 @@ import tensorflow as tf
 
 class GenreClassifier:
     def build_mlp_model(self, input_shape, num_classes):
-        """Gradi višeslojnu neuronsku mrežu (MLP) za klasifikaciju žanrova"""
+        """Builds a multilayer perceptron (MLP) for genre classification"""
         model = models.Sequential([
             layers.Flatten(input_shape=input_shape),
             layers.Dense(512, activation='relu'),
@@ -20,7 +20,7 @@ class GenreClassifier:
         return model
 
     def build_simple_cnn_model(self, input_shape, num_classes):
-        """Gradi jednostavnu CNN mrežu sa manje slojeva"""
+        """Builds a simple CNN with fewer layers"""
         model = models.Sequential([
             layers.Conv2D(16, (3,3), activation='relu', input_shape=input_shape),
             layers.MaxPooling2D((2,2)),
@@ -38,7 +38,7 @@ class GenreClassifier:
         return model
 
     def build_cnn_model(self, input_shape, num_classes):
-        """Gradi CNN model za klasifikaciju žanrova na osnovu spektrograma"""
+        """Builds a CNN model for genre classification based on spectrograms"""
         model = models.Sequential([
             layers.Conv2D(32, (3,3), activation='relu', input_shape=input_shape),
             layers.BatchNormalization(),
@@ -64,22 +64,22 @@ class GenreClassifier:
         return model
 
     def build_resnet_model(self, input_shape, num_classes):
-        """Gradi ResNet model za klasifikaciju žanrova"""
+        """Builds a ResNet model for genre classification"""
         inputs = layers.Input(shape=input_shape)
 
-        # Prvi konvolucioni blok
+        # First convolutional block
         x = layers.Conv2D(64, (7, 7), strides=2, padding='same')(inputs)
         x = layers.BatchNormalization()(x)
         x = layers.Activation('relu')(x)
         x = layers.MaxPooling2D((3, 3), strides=2, padding='same')(x)
 
-        # Residual blokovi
+        # Residual blocks
         x = self._resnet_block(x, 64, 3)
         x = self._resnet_block(x, 128, 4, strides=2)
         x = self._resnet_block(x, 256, 6, strides=2)
         x = self._resnet_block(x, 512, 3, strides=2)
 
-        # Global average pooling i dense
+        # Global average pooling and dense
         x = layers.GlobalAveragePooling2D()(x)
         x = layers.Dense(256, activation='relu')(x)
         x = layers.Dropout(0.5)(x)
@@ -89,7 +89,7 @@ class GenreClassifier:
         return model
 
     def _resnet_block(self, x, filters, blocks, strides=1):
-        """Pomoćna funkcija za ResNet blok"""
+        """Helper function for a ResNet block"""
         for i in range(blocks):
             shortcut = x
             if i == 0 and strides > 1:

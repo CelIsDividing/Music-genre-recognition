@@ -8,32 +8,31 @@ class FeatureExtractor:
         self.n_mels = n_mels
     
     def extract_mel_spectrogram(self, audio_path):
-        """Ekstrahuje Mel-spektrogram iz audio fajla"""
+        """Extracts a Mel-spectrogram from an audio file"""
         y, sr = librosa.load(audio_path, sr=self.sample_rate, duration=self.duration)
         S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=self.n_mels)
         S_db = librosa.power_to_db(S, ref=np.max)
-        # Normalizacija na [0, 1]
         S_db_norm = (S_db - S_db.min()) / (S_db.max() - S_db.min())
         return S_db_norm
     
     def extract_mfcc(self, audio_path, n_mfcc=13):
-        """Ekstrahuje MFCC (Mel-Frequency Cepstral Coefficients) karakteristike
+        """Extracts MFCC (Mel-Frequency Cepstral Coefficients) features
         
-        MFCC su široko korišćene karakteristike u audio obradi koje modeluju
-        kako ljudsko uho percipira zvuk. Koriste se za:
-        - Prepoznavanje govora
-        - Klasifikaciju muzičkih žanrova
-        - Analizu audio signala
+        MFCCs are widely used features in audio processing that model
+        how the human ear perceives sound. They are used for:
+        - Speech recognition
+        - Music genre classification
+        - Audio signal analysis
         
         Args:
-            audio_path (str): Putanja do audio fajla
-            n_mfcc (int): Broj MFCC koeficijenata (tipično 13-40)
+            audio_path (str): Path to the audio file
+            n_mfcc (int): Number of MFCC coefficients (typically 13-40)
             
         Returns:
-            np.ndarray: MFCC matrice (n_mfcc x vreme)
+            np.ndarray: MFCC matrix (n_mfcc x time)
         """
         y, sr = librosa.load(audio_path, sr=self.sample_rate, duration=self.duration)
         mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
-        # Normalizacija po vremenskim frejmovima
+        # Normalization across time frames
         mfcc_norm = (mfcc - mfcc.mean(axis=1, keepdims=True)) / (mfcc.std(axis=1, keepdims=True) + 1e-8)
         return mfcc_norm

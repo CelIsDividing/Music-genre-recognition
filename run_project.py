@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Jednostavno pokretanje celog projekta
+Simple runner for the entire project
 """
 
 import sys
 import os
 
-# Dodavanje src putanje
+# Add src to the path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 from music_genre_classifier import MusicGenreClassifier
@@ -14,13 +14,13 @@ from music_genre_classifier import MusicGenreClassifier
 def run_complete_project():
     classifier = MusicGenreClassifier()
     
-    # Provera da li dataset postoji
+    # Check whether the dataset exists
     if not os.path.exists('data/raw'):
-        print("Dataset ne postoji! Kreirajte direktorijum data/raw sa žanrovima.")
-        print("Struktura: data/raw/pop/, data/raw/rock/, itd.")
+        print("Dataset does not exist! Create the data/raw directory with genres.")
+        print("Structure: data/raw/pop/, data/raw/rock/, etc.")
         return
     
-    # Pokretanje celokupnog pipeline-a
+    # Run the complete pipeline
     classifier.run_full_pipeline()
 
 if __name__ == "__main__":

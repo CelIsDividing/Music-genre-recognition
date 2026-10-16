@@ -1,65 +1,65 @@
-# Seminar: Klasifikacija Muzičkih Žanrova pomoću Deep Learning-a
+# Seminar: Music Genre Classification with Deep Learning
 
-## Uvod
+## Introduction
 
-U savremenom svetu, muzika igra značajnu ulogu u svakodnevnom životu ljudi. Sa ogromnom količinom dostupnih muzičkih sadržaja na platformama kao što su Spotify, YouTube i Apple Music, postaje sve važnije automatski klasifikovati muzičke žanrove. Ova klasifikacija pomaže u organizovanju muzičkih biblioteka, preporučivanju sadržaja korisnicima i analizi muzičkih trendova.
+In the modern world, music plays a significant role in people's everyday lives. With the huge amount of music content available on platforms such as Spotify, YouTube and Apple Music, it is becoming increasingly important to automatically classify music genres. This classification helps to organize music libraries, recommend content to users and analyze music trends.
 
-Ovaj seminar predstavlja projekat koji koristi duboko učenje za klasifikaciju muzičkih žanrova na osnovu audio spektrograma. Projekat implementira i poredi četiri različita modela neuronskih mreža: Višeslojnu neuronsku mrežu (MLP), jednostavnu konvolucionu neuronsku mrežu (CNN), naprednu CNN i ResNet arhitekturu. Cilj je demonstrirati kako se mašinsko učenje može primeniti na audio podatke za rešavanje problema klasifikacije.
+This seminar presents a project that uses deep learning to classify music genres based on audio spectrograms. The project implements and compares four different neural network models: a multilayer perceptron (MLP), a simple convolutional neural network (CNN), an advanced CNN and a ResNet architecture. The goal is to demonstrate how machine learning can be applied to audio data to solve a classification problem.
 
-## Opis problema
+## Problem description
 
-Klasifikacija muzičkih žanrova predstavlja izazovan problem u oblasti mašinskog učenja zbog kompleksnosti audio signala. Audio fajlovi sadrže veliku količinu podataka koji se menjaju tokom vremena, što zahteva efikasne metode ekstrakcije karakteristika. Tradicionalni pristupi zasnovani na ručno izabranim karakteristikama (kao što su MFCC, spektrogrami ili tempo) često nisu dovoljno robusni za različite vrste muzike.
+Music genre classification is a challenging problem in the field of machine learning due to the complexity of audio signals. Audio files contain a large amount of data that changes over time, which requires efficient feature extraction methods. Traditional approaches based on hand-picked features (such as MFCC, spectrograms or tempo) are often not robust enough for different types of music.
 
-Problem se može formulisati kao višeklasna klasifikacija gde je ulaz audio signal, a izlaz jedan od 10 muzičkih žanrova: Country, Jazz, Pop, Rap, Rock, Classical, Blues, Electronic, Metal i Folk. Svaki žanr ima svoje karakteristične audio osobine koje modeli dubokog učenja mogu naučiti da prepoznaju.
+The problem can be formulated as multiclass classification where the input is an audio signal and the output is one of 10 music genres: Country, Jazz, Pop, Rap, Rock, Classical, Blues, Electronic, Metal and Folk. Each genre has its own characteristic audio properties that deep learning models can learn to recognize.
 
-Glavni izazovi uključuju:
-- Veliku dimenzionalnost audio podataka
-- Varijabilnost unutar žanrova
-- Potrebu za velikim skupovima podataka za trening
-- Računarsku kompleksnost dubokih modela
+The main challenges include:
+- The high dimensionality of audio data
+- Variability within genres
+- The need for large training datasets
+- The computational complexity of deep models
 
-## Način rada i alati
+## Approach and tools
 
-Za realizaciju ovog projekta koristi se programski jezik Python zbog svoje popularnosti u oblasti mašinskog učenja i bogatog ekosistema biblioteka. Kao glavni okvir za duboko učenje koristi se Keras, API koji radi iznad TensorFlow-a. Keras omogućava jednostavno definisanje i trening neuronskih mreža.
+To implement this project, the Python programming language is used because of its popularity in the field of machine learning and its rich ecosystem of libraries. Keras, an API that runs on top of TensorFlow, is used as the main deep learning framework. Keras makes it easy to define and train neural networks.
 
-Ključne biblioteke koje se koriste:
+The key libraries used:
 
-- **TensorFlow/Keras**: Za izgradnju i trening neuronskih mreža
-- **Librosa**: Za obradu audio signala i ekstrakciju karakteristika
-- **NumPy**: Za numeričke operacije i rad sa nizovima
-- **Pandas**: Za manipulaciju podacima i analizu rezultata
-- **Scikit-learn**: Za podelu podataka i evaluacione metrike
-- **Matplotlib/Seaborn**: Za vizualizaciju rezultata
+- **TensorFlow/Keras**: For building and training neural networks
+- **Librosa**: For audio signal processing and feature extraction
+- **NumPy**: For numerical operations and working with arrays
+- **Pandas**: For data manipulation and results analysis
+- **Scikit-learn**: For data splitting and evaluation metrics
+- **Matplotlib/Seaborn**: For results visualization
 
-Proces rada se sastoji iz nekoliko koraka:
-1. Prikupljanje i priprema audio podataka
-2. Ekstrakcija karakteristika (Mel-spektrogrami)
-3. Podela podataka na trening, validaciju i test skupove
-4. Definisanje i trening različitih modela
-5. Evaluacija performansi modela
-6. Poređenje rezultata
+The workflow consists of several steps:
+1. Collecting and preparing audio data
+2. Feature extraction (Mel-spectrograms)
+3. Splitting data into training, validation and test sets
+4. Defining and training different models
+5. Evaluating model performance
+6. Comparing the results
 
-## Kako radi model
+## How the model works
 
-Modeli koriste Mel-spektrograme kao ulazne karakteristike. Mel-spektrogram je dvodimenzionalna reprezentacija audio signala koja prikazuje kako se energija signala menja tokom vremena u različitim frekvencijskim opsezima. Ova reprezentacija je posebno pogodna za muzičku analizu jer odražava kako ljudsko uho percipira zvuk.
+The models use Mel-spectrograms as input features. A Mel-spectrogram is a two-dimensional representation of an audio signal that shows how the signal's energy changes over time across different frequency ranges. This representation is particularly suitable for music analysis because it reflects how the human ear perceives sound.
 
-### Višeslojna neuronska mreža (MLP)
-MLP je najjednostavniji model koji se sastoji od potpuno povezanih slojeva. Ulazni spektrogram se prvo spljošti u vektor, zatim prolazi kroz nekoliko gustih slojeva sa aktivacijskim funkcijama ReLU. Koriste se Batch Normalization i Dropout slojevi za regularizaciju.
+### Multilayer perceptron (MLP)
+The MLP is the simplest model, consisting of fully connected layers. The input spectrogram is first flattened into a vector, then passes through several dense layers with ReLU activation functions. Batch Normalization and Dropout layers are used for regularization.
 
-### Jednostavna CNN
-Konvoluciona neuronska mreža koristi konvolucione slojeve za ekstrakciju prostornih karakteristika iz spektrograma. Model ima dva konvoluciona bloka sa MaxPooling slojevima za smanjenje dimenzionalnosti.
+### Simple CNN
+A convolutional neural network uses convolutional layers to extract spatial features from the spectrogram. The model has two convolutional blocks with MaxPooling layers to reduce dimensionality.
 
-### Napredna CNN
-Ovaj model ima više konvolucionih slojeva (32, 64, 128 filtera) sa Batch Normalization i Dropout slojevima između njih. Koristi se za ekstrakciju složenijih karakteristika.
+### Advanced CNN
+This model has more convolutional layers (32, 64, 128 filters) with Batch Normalization and Dropout layers between them. It is used to extract more complex features.
 
 ### ResNet
-ResNet arhitektura koristi residualne blokove koji omogućavaju trening veoma dubokih mreža. Svaki residualni blok sadrži dva konvoluciona sloja sa preskočnim vezama koje pomažu u rešavanju problema nestajućeg gradijenta.
+The ResNet architecture uses residual blocks that enable the training of very deep networks. Each residual block contains two convolutional layers with skip connections that help solve the vanishing gradient problem.
 
-Svi modeli koriste Adam optimizator, sparse categorical cross-entropy loss funkciju i accuracy kao metriku. Trening uključuje Early Stopping i Learning Rate Scheduling za sprečavanje preobučavanja.
+All models use the Adam optimizer, the sparse categorical cross-entropy loss function and accuracy as the metric. Training includes Early Stopping and Learning Rate Scheduling to prevent overfitting.
 
-## Praktični deo tj. kod
+## Practical part, i.e. the code
 
-### Ekstrakcija karakteristika
+### Feature extraction
 ```python
 import librosa
 import numpy as np
@@ -71,22 +71,22 @@ class FeatureExtractor:
         self.n_mels = n_mels
     
     def extract_mel_spectrogram(self, audio_path):
-        """Ekstrahuje Mel-spektrogram iz audio fajla"""
+        """Extracts a Mel-spectrogram from an audio file"""
         y, sr = librosa.load(audio_path, sr=self.sample_rate, duration=self.duration)
         S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=self.n_mels)
         S_db = librosa.power_to_db(S, ref=np.max)
-        # Normalizacija na [0, 1]
+        # Normalization to [0, 1]
         S_db_norm = (S_db - S_db.min()) / (S_db.max() - S_db.min())
         return S_db_norm
 ```
 
-### Definisanje modela
+### Model definition
 ```python
 from keras import layers, models
 
 class GenreClassifier:
     def build_mlp_model(self, input_shape, num_classes):
-        """Gradi višeslojnu neuronsku mrežu (MLP) za klasifikaciju žanrova"""
+        """Builds a multilayer perceptron (MLP) for genre classification"""
         model = models.Sequential([
             layers.Flatten(input_shape=input_shape),
             layers.Dense(512, activation='relu'),
@@ -103,7 +103,7 @@ class GenreClassifier:
         return model
 
     def build_simple_cnn_model(self, input_shape, num_classes):
-        """Gradi jednostavnu CNN mrežu sa manje slojeva"""
+        """Builds a simple CNN with fewer layers"""
         model = models.Sequential([
             layers.Conv2D(16, (3,3), activation='relu', input_shape=input_shape),
             layers.MaxPooling2D((2,2)),
@@ -119,7 +119,7 @@ class GenreClassifier:
         return model
 ```
 
-### Trening modela
+### Model training
 ```python
 import tensorflow as tf
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
@@ -149,9 +149,9 @@ class Trainer:
         return history
 ```
 
-## Rezultat koda
+## Code results
 
-Nakon treninga i evaluacije četiri modela na test skupu, dobijeni su sledeći rezultati:
+After training and evaluating the four models on the test set, the following results were obtained:
 
 | Model       | Accuracy | Precision | Recall | F1-Score | Val_Accuracy | Val_Loss |
 |-------------|----------|-----------|--------|----------|--------------|----------|
@@ -160,24 +160,24 @@ Nakon treninga i evaluacije četiri modela na test skupu, dobijeni su sledeći r
 | Advanced CNN| 0.4235   | 0.4783    | 0.4235 | 0.3971   | 0.3824       | 3.0516   |
 | ResNet      | 0.3647   | 0.3087    | 0.3647 | 0.2770   | 0.2500       | 2.0949   |
 
-Najbolji rezultati postignuti su sa naprednom CNN arhitekturom koja je ostvarila tačnost od 42.35% na test skupu. Ova tačnost je relativno niska zbog ograničenog skupa podataka i kompleksnosti problema klasifikacije muzičkih žanrova. MLP i jednostavna CNN su pokazali slične performanse (~20-22%), dok je ResNet bio nešto bolji od MLP-a ali lošiji od napredne CNN.
+The best results were achieved with the advanced CNN architecture, which reached an accuracy of 42.35% on the test set. This accuracy is relatively low due to the limited dataset and the complexity of the music genre classification problem. The MLP and the simple CNN showed similar performance (~20-22%), while ResNet was somewhat better than the MLP but worse than the advanced CNN.
 
-Validacione metrike pokazuju da modeli nisu preobučeni, što je dobro. Međutim, niske vrednosti tačnosti ukazuju na potrebu za većim skupovima podataka i dodatnim tehnikama augmentacije.
+The validation metrics show that the models are not overfitted, which is good. However, the low accuracy values indicate a need for larger datasets and additional augmentation techniques.
 
-## Zaključak
+## Conclusion
 
-Ovaj projekat je demonstrirao primenu dubokog učenja na problem klasifikacije muzičkih žanrova. Iako su rezultati ograničeni veličinom skupa podataka, projekat pokazuje važnost različitih arhitektura neuronskih mreža za audio klasifikaciju.
+This project demonstrated the application of deep learning to the problem of music genre classification. Although the results are limited by the size of the dataset, the project shows the importance of different neural network architectures for audio classification.
 
-Ključni uvidi:
-- Konvolucione neuronske mreže su superiorne u odnosu na MLP za obradu spektrograma
-- Naprednija CNN arhitektura daje bolje rezultate od jednostavne
-- ResNet pokazuje obećavajuće rezultate ali zahteva više podataka za optimalne performanse
+Key insights:
+- Convolutional neural networks are superior to the MLP for processing spectrograms
+- A more advanced CNN architecture gives better results than a simple one
+- ResNet shows promising results but requires more data for optimal performance
 
-Za budući rad, preporučuje se:
-- Prikupljanje većeg skupa podataka
-- Implementacija data augmentation tehnika
-- Istraživanje drugih karakteristika (MFCC, chroma, tempo)
-- Upotreba transfer learning-a sa pretreniranim modelima
-- Optimizacija hiperparametara
+For future work, the following is recommended:
+- Collecting a larger dataset
+- Implementing data augmentation techniques
+- Exploring other features (MFCC, chroma, tempo)
+- Using transfer learning with pretrained models
+- Hyperparameter optimization
 
-Ovaj projekat predstavlja solidnu osnovu za dalji razvoj sistema za automatsku klasifikaciju muzičkih žanrova.
+This project represents a solid foundation for further development of an automatic music genre classification system.

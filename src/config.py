@@ -1,4 +1,4 @@
-# Konfiguracioni parametri
+# Configuration parameters
 CONFIG = {
     'audio': {
         'sample_rate': 22050,
@@ -16,5 +16,6 @@ CONFIG = {
         'model_dir': 'models',
         'results_dir': 'results'
     },
-    'genres': ['pop', 'rock', 'jazz', 'classical', 'hiphop', 'electronic']
+    'genres': ['pop', 'rock', 'jazz', 'classical', 'hiphop', 
+               'electronic', 'blues', 'country', 'electronic', 'folk']
 }

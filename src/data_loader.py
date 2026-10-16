@@ -10,7 +10,7 @@ class DataLoader:
         self.label_encoder = LabelEncoder()
     
     def load_audio_files(self, data_dir):
-        """Učitava audio fajlove iz direktorijuma po žanrovima"""
+        """Loads audio files from directories organized by genre"""
         from src.feature_extractor import FeatureExtractor
         extractor = FeatureExtractor()
         features = []
@@ -31,12 +31,11 @@ class DataLoader:
                         labels.append(genre)
                         loaded_files += 1
                     except Exception as e:
-                        print(f"⚠️  Preskačen problematični fajl: {file_path} - Greška: {str(e)}")
-        print(f"📊 Ukupno fajlova: {total_files}, Uspešno učitano: {loaded_files}")
+                        print(f"Skipping problematic file: {file_path} - Error: {str(e)}")
+        print(f"Total files: {total_files}, Successfully loaded: {loaded_files}")
         features = np.array(features)
         labels = self.label_encoder.fit_transform(labels)
         return features, labels
     
     def split_dataset(self, features, labels):
-        """Deli dataset na trening, validacioni i test skup"""
-        # Implementacija...
+        """Splits the dataset into training, validation and test sets"""
